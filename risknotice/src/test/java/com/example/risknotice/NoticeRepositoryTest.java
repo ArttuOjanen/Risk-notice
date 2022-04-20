@@ -18,6 +18,7 @@ public class NoticeRepositoryTest {
 	@Autowired
 	private NoticeRepository repository;
 	
+	//Testing creation of new notice
 	@Test
     public void createNewNotice() {
     	Notice notice = new Notice("Test", "Low", "Testing");
