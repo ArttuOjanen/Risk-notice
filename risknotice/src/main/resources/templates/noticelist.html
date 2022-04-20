@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Risknoticelist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Notices</h1>
+	
+	<div>
+    <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+    </div>
+    
+    <div>
+    <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+    </form>
+    </div>
+    
+    <table>
+		<tr>
+		    <th>Title</th>
+		    <th>Priority</th>
+		    <th>Description</th>
+		    <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>  
+    	<tr th:each = "notice : ${notices}">
+    		<td th:text="${notice.title}"></td>
+    		<td th:text="${notice.priority}"></td>
+    		<td th:text="${notice.description}"></td>
+ 				  <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${notice.id})}" class="btn btn-xs btn-danger">Delete</a></td> 
+ 				  <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${notice.id})}">Edit</a></td> 
+    	</tr>
+     </table>
+		 <a href="/add">Add notice</a>    
+</body>
+</html>
