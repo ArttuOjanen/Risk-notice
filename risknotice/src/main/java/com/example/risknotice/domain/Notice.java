@@ -54,9 +54,8 @@ public class Notice {
 		this.description = description;
 	}
 	
-	public Notice(Long id, String title, String priority, String description) {
+	public Notice(String title, String priority, String description) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.priority = priority;
 		this.description = description;
